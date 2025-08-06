@@ -29,6 +29,9 @@ dependencies {
     // jasypt
     implementation("com.github.ulisesbocchio:jasypt-spring-boot-starter:3.0.5")
 
+    // webclient
+    implementation("org.springframework.boot:spring-boot-starter-webflux")
+
     developmentOnly("org.springframework.boot:spring-boot-devtools")
     runtimeOnly("com.mysql:mysql-connector-j")
     providedRuntime("org.springframework.boot:spring-boot-starter-tomcat")
