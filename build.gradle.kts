@@ -25,6 +25,10 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
     implementation("org.jetbrains.kotlin:kotlin-reflect")
+
+    // jasypt
+    implementation("com.github.ulisesbocchio:jasypt-spring-boot-starter:3.0.5")
+
     developmentOnly("org.springframework.boot:spring-boot-devtools")
     runtimeOnly("com.mysql:mysql-connector-j")
     providedRuntime("org.springframework.boot:spring-boot-starter-tomcat")
