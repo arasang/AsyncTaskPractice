@@ -8,6 +8,7 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get
 import org.springframework.test.web.servlet.result.MockMvcResultHandlers
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers.status
 import park.sangeun.aysnctest.common.toMultiValueMap
+import park.sangeun.aysnctest.domain.exchange.model.CurrencyNationEnum
 import park.sangeun.aysnctest.domain.exchange.model.ExchangeRateRequest
 
 class ExchangeRateControllerTest: AysncTestApplicationTests() {
@@ -15,7 +16,7 @@ class ExchangeRateControllerTest: AysncTestApplicationTests() {
     @Test
     fun getExchangeRateList() {
         val request = ExchangeRateRequest()
-        request.baseCurrency = ""
+        request.baseCurrency = CurrencyNationEnum.KOREA
 
         val response = mockMvc?.perform (
             get("$baseUrl/exchange/rate")
