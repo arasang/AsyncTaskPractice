@@ -15,3 +15,7 @@ spring:
         dialect: org.hibernate.dialect.MySQL8Dialect
 server:
   port: 8082
+
+exchange-rate:
+  url: https://api.exchangerate.host
+  key: p6BSxy5QJiu4YyKNvm6plANvHosWCYrjvPb4B0t4vRrAQCgQ9Y7cqxDEbtRTqHch5I6xyMNkAl4=

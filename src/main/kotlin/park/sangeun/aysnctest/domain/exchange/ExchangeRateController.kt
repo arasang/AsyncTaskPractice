@@ -15,7 +15,7 @@ class ExchangeRateController(
 ) {
     @GetMapping
     fun getExchangeRate(
-        @ModelAttribute @Valid request: ExchangeRateRequest?,
+        @ModelAttribute @Valid request: ExchangeRateRequest,
     ): ExchangeRateResponse {
         return ExchangeRateResponse()
     }
