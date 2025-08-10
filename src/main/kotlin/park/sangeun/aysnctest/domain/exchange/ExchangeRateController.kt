@@ -14,9 +14,9 @@ class ExchangeRateController(
     private val service: ExchangeRateService
 ) {
     @GetMapping
-    fun getExchangeRate(
+    suspend fun getExchangeRate(
         @ModelAttribute @Valid request: ExchangeRateRequest,
-    ): ExchangeRateResponse {
-        return ExchangeRateResponse()
+    ): List<ExchangeRateResponse> {
+        return service.getRateList(request)
     }
 }

@@ -1,6 +1,5 @@
 package park.sangeun.aysnctest.domain
 
-import com.fasterxml.jackson.databind.ObjectMapper
 import org.junit.jupiter.api.Test
 import org.springframework.http.MediaType
 import park.sangeun.aysnctest.AysncTestApplicationTests
@@ -12,7 +11,6 @@ import park.sangeun.aysnctest.domain.exchange.model.CurrencyNationEnum
 import park.sangeun.aysnctest.domain.exchange.model.ExchangeRateRequest
 
 class ExchangeRateControllerTest: AysncTestApplicationTests() {
-    private val objectMapper = ObjectMapper()
     @Test
     fun getExchangeRateList() {
         val request = ExchangeRateRequest()
