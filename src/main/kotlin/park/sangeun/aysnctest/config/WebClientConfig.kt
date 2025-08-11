@@ -51,13 +51,6 @@ class WebClientConfig(
             .baseUrl(exchangeUrl)
             .defaultHeader(CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
             .defaultHeader(ACCEPT, MediaType.APPLICATION_JSON_VALUE)
-            .defaultStatusHandler(HttpStatusCode::isError) {
-                it.createException().flatMap {
-                    Mono.error {
-                        throw Exception(it.message)
-                    }
-                }
-            }
             .build()
     }
 

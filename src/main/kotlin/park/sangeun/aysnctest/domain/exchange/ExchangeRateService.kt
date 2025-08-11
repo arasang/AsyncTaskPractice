@@ -8,11 +8,15 @@ import org.springframework.beans.factory.annotation.Qualifier
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.stereotype.Service
 import org.springframework.web.reactive.function.client.WebClient
+import org.springframework.web.reactive.function.client.WebClientResponseException
 import org.springframework.web.reactive.function.client.awaitBody
+import park.sangeun.aysnctest.common.retry429
+import park.sangeun.aysnctest.common.withLimit
 import park.sangeun.aysnctest.domain.exchange.model.CurrencyNationEnum
 import park.sangeun.aysnctest.domain.exchange.model.CurrencyResultResponse
 import park.sangeun.aysnctest.domain.exchange.model.ExchangeRateRequest
 import park.sangeun.aysnctest.domain.exchange.model.ExchangeRateResponse
+import java.math.BigDecimal
 
 @Service
 class ExchangeRateService(
@@ -29,23 +33,30 @@ class ExchangeRateService(
             .filter { it != base }
             .map { t ->
                 async {
-                    getRate(t, base!!)
+                    withLimit {
+                        retry429 {
+                            getRate(request.amount, t, base!!)
+                        }
+                    }
                 }
             }
 
         currency.awaitAll()
     }
 
-    private suspend fun getRate(target: CurrencyNationEnum, baseCurrency: CurrencyNationEnum): ExchangeRateResponse {
+    private suspend fun getRate(amount: Long, target: CurrencyNationEnum, baseCurrency: CurrencyNationEnum): ExchangeRateResponse {
         return try {
             val response =  webClient.get()
                 .uri { builder ->
-                    builder
+                    val build = builder
                         .path("/convert")
                         .queryParam("access_key", exchangeKey)
                         .queryParam("from", baseCurrency.value)
                         .queryParam("to", target.value)
+                        .queryParam("amount", amount)
                         .build()
+                    println(builder.toUriString())
+                    build
                 }
                 .retrieve()
                 .awaitBody<CurrencyResultResponse>()
@@ -57,13 +68,16 @@ class ExchangeRateService(
                 rate = response.info.quote,
                 result = response.result
             )
-        } catch (e: Exception) {
-            e.printStackTrace()
+        } catch(e: WebClientResponseException.TooManyRequests) {
+          throw e
+        } catch (e1: Exception) {
+            println(e1.javaClass.name)
+            e1.printStackTrace()
             ExchangeRateResponse(
                 to = target.value,
                 from = baseCurrency.value,
                 amount = 0,
-                rate = 0.0f,
+                rate = BigDecimal.valueOf(0.0),
                 result = 0.0f
             )
         }

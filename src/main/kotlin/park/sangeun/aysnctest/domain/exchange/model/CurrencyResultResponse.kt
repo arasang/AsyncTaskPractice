@@ -1,5 +1,7 @@
 package park.sangeun.aysnctest.domain.exchange.model
 
+import java.math.BigDecimal
+
 data class CurrencyResultResponse(
     val success: Boolean,
     val terms: String,
@@ -16,6 +18,6 @@ data class CurrencyResultResponse(
 
     data class Info (
         val timestamp: Long,
-        val quote: Float
+        val quote: BigDecimal
     )
 }
