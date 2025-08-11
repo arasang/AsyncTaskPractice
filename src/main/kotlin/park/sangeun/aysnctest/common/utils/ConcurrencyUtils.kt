@@ -1,4 +1,4 @@
-package park.sangeun.aysnctest.common
+package park.sangeun.aysnctest.common.utils
 
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.sync.Semaphore

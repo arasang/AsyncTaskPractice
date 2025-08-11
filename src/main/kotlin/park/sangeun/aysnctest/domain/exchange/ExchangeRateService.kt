@@ -3,15 +3,14 @@ package park.sangeun.aysnctest.domain.exchange
 import kotlinx.coroutines.async
 import kotlinx.coroutines.awaitAll
 import kotlinx.coroutines.coroutineScope
-import kotlinx.coroutines.reactor.awaitSingle
 import org.springframework.beans.factory.annotation.Qualifier
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.stereotype.Service
 import org.springframework.web.reactive.function.client.WebClient
 import org.springframework.web.reactive.function.client.WebClientResponseException
 import org.springframework.web.reactive.function.client.awaitBody
-import park.sangeun.aysnctest.common.retry429
-import park.sangeun.aysnctest.common.withLimit
+import park.sangeun.aysnctest.common.utils.retry429
+import park.sangeun.aysnctest.common.utils.withLimit
 import park.sangeun.aysnctest.domain.exchange.model.CurrencyNationEnum
 import park.sangeun.aysnctest.domain.exchange.model.CurrencyResultResponse
 import park.sangeun.aysnctest.domain.exchange.model.ExchangeRateRequest

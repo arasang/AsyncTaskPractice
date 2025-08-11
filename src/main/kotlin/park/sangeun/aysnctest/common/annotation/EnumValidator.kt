@@ -1,4 +1,4 @@
-package park.sangeun.aysnctest.common
+package park.sangeun.aysnctest.common.annotation
 
 import jakarta.validation.ConstraintValidator
 import jakarta.validation.ConstraintValidatorContext

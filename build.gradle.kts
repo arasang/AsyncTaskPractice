@@ -40,6 +40,10 @@ dependencies {
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.8.1")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-reactor:1.8.1")
 
+    // redis
+    implementation("io.lettuce:lettuce-core:6.6.0.RELEASE")
+    implementation("org.springframework.boot:spring-boot-starter-data-redis:3.5.4")
+
     // local netty error fix
     runtimeOnly("io.netty:netty-resolver-dns-native-macos:4.1.123.Final:osx-aarch_64")
     testRuntimeOnly("io.netty:netty-resolver-dns-native-macos:4.1.123.Final:osx-aarch_64")

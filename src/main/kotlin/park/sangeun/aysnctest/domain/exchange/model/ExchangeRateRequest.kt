@@ -2,7 +2,7 @@ package park.sangeun.aysnctest.domain.exchange.model
 
 import com.fasterxml.jackson.annotation.JsonInclude
 import jakarta.validation.constraints.PositiveOrZero
-import park.sangeun.aysnctest.common.ValidEnum
+import park.sangeun.aysnctest.common.annotation.ValidEnum
 
 @JsonInclude(value = JsonInclude.Include.NON_NULL)
 data class ExchangeRateRequest(
