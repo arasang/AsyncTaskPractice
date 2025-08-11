@@ -13,7 +13,7 @@ import park.sangeun.aysnctest.domain.exchange.model.ExchangeRateRequest
 class ExchangeRateControllerTest: AysncTestApplicationTests() {
     @Test
     fun getExchangeRateList() {
-        val request = ExchangeRateRequest()
+        val request = ExchangeRateRequest(amount = 1000,)
         request.baseCurrency = CurrencyNationEnum.KOREA
 
         val response = mockMvc?.perform (
