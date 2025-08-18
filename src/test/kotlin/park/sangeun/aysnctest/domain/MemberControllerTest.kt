@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired
 import park.sangeun.aysnctest.AysncTestApplicationTests
 import park.sangeun.aysnctest.common.component.RedisService
 import park.sangeun.aysnctest.domain.common.GlobalConstant.Companion.REDIS_MEMBER_INFO
+import park.sangeun.aysnctest.domain.member.MemberService
 import park.sangeun.aysnctest.domain.member.repository.MemberRepository
 import kotlin.test.Test
 
@@ -12,11 +13,20 @@ class MemberControllerTest(
     private val redisService: RedisService,
 
     @Autowired
-    private val memberRepository: MemberRepository
+    private val memberRepository: MemberRepository,
+
+    @Autowired
+    private val memberService: MemberService,
+
 ): AysncTestApplicationTests() {
     @Test
     fun test() {
         println(redisService.getHashEntries("$REDIS_MEMBER_INFO:1"))
         println(memberRepository.findById(1))
+    }
+
+    @Test
+    fun testRedis() {
+        memberService.getMemberInfoFromRedis()
     }
 }

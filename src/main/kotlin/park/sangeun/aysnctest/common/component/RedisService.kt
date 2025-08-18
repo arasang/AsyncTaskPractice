@@ -10,6 +10,10 @@ class RedisService(
     val opsForHash = redisTemplate.opsForHash<String, String>()
     val opsForValue = redisTemplate.opsForValue()
 
+    fun getKeys(pattern: String): Set<String> {
+        return redisTemplate.keys(pattern)
+    }
+
     fun getHashEntries(key: String): Map<String, String>{
         return opsForHash.entries(key)
     }

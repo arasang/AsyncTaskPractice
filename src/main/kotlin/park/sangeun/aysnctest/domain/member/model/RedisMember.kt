@@ -1,4 +1,4 @@
-package park.sangeun.aysnctest.domain.member
+package park.sangeun.aysnctest.domain.member.model
 
 data class RedisMember(
     var nickname: String,
